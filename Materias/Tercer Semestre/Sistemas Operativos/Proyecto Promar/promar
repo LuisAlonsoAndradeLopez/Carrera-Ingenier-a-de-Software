@@ -1,0 +1,387 @@
+#!/bin/bash
+
+case $1 in
+##################################################################################################
+
+    #Miscelaneo
+   
+    #1
+    -cambiar_a_directorio)
+        cd $2
+        exec bash
+    ;;
+
+    #2
+    -mostrar_contenido)
+        ls $2
+    ;;
+
+    #3
+    -imprimir)
+        echo $2
+    ;;
+
+    #4
+    -imprimir_ubicacion)
+        pwd
+    ;;
+
+    #5
+    -manual)
+        man $2
+    ;;
+
+    #6
+    -abrir_link)
+        gio open $2
+    ;;
+
+    #7
+    -detener)
+        sleep $2
+    ;; 
+
+    #8
+    -limpiar_terminal)
+        clear
+    ;;
+
+    #9
+    -salir_terminal)
+        exit
+        exec bash
+        exec bash
+    ;;
+
+##################################################################################################
+
+    #Tema Archivos
+
+    #10
+    -comprimir_a_zip)
+        7z a $2.zip $3 $4 $5 $6 $7
+    ;;
+
+    #11
+    -comprimir_a_rar)
+        rar a $2.rar $3 $4 $5 $6 $7
+    ;;
+    
+    #12
+    -comprimir_a_tar)
+        tar cf $2.tar $3 $4 $5 $6 $7
+    ;;
+
+    #13
+    -crear_carpeta)
+        mkdir $2
+    ;;
+
+    #14
+    -crear_archivo)
+        touch $2
+    ;;
+
+    #15
+    -tipo_de_archivo)
+        file $2
+    ;;
+
+    #16
+    -tamano)
+        du -s $2
+    ;;
+
+    #17
+    -buscar_archivo)
+        locate $2
+    ;;
+
+    #18
+    -mover_archivo)
+        mv $2 $3
+    ;;
+
+    #19
+    -mostrar_contenido_archivo)
+        cat $2
+    ;;
+
+    #20
+    -copiar_archivo)
+        cp $2 $3
+    ;;
+
+    #21
+    -buscar_palabra)
+        grep -n $2 $3
+    ;;
+
+##################################################################################################
+   
+    #Usuarios y grupos
+
+    #22
+    -convertirte_en_root)
+        sudo su
+    ;;
+
+    #23
+    -cambiar_permisos)
+        chmod $2 $3 $4
+    ;;
+
+    #24
+    -cambiar_propietario)
+        chown $2 $3 $4
+    ;;
+
+    #25
+    -crear_usuario)
+        sudo useradd $2
+    ;;
+
+    #26
+    -crear_grupo)
+        sudo groupadd $2
+    ;;
+
+    #27
+    -modificar_usuario)
+        sudo usermod $2
+    ;;
+
+    #28
+    -modificar_grupo)
+        sudo groupmod $2
+    ;;
+
+    #29
+    -eliminar_usuario)
+        sudo userdel -r $2
+    ;;
+
+    #30
+    -eliminar_grupo)
+        sudo groupdel -r $2
+    ;;
+
+    #31
+    -info_usuario)
+        id
+    ;;
+
+    #32
+    -quien_esta_conectado)
+        who
+    ;;
+
+##################################################################################################
+
+    #Info Sistema
+
+    #33
+    -fecha_y_hora)
+        date
+    ;;
+
+    #34
+    -calendario)
+        cal $2
+    ;;
+
+    #35
+    -info_cpu)
+        lscpu
+    ;;
+
+    #36
+    -kernel)
+        uname -r $2
+    ;;
+
+    #37
+    -shell)
+        echo $SHELL
+    ;;
+
+    #38
+    -memoria_libre)
+        free $2
+    ;;
+
+    #39
+    #requerimientos:
+    #Arch: sudo pacman -S htop
+    #Ubuntu: sudo apt install htop
+    -mostrar_procesos)
+        htop
+    ;;
+
+    #40
+    -arbol_de_procesos)
+        pstree $2
+    ;;
+
+    #41
+    -matar_proceso)
+        kill $2
+    ;;
+
+    #42
+    -ayuda_general)
+        help
+    ;;
+
+##################################################################################################
+
+    #Programas
+
+    #43
+    #requiere
+    #Arch: sudo pacman -S neofetch 
+    #Ubuntu: sudo apt install neofetch
+    -info_sistema)
+        neofetch
+    ;;
+   
+    #44
+    #requiere
+    #Arch sudo pacman -Syu cmatrix
+    #Ubuntu: sudo apt install cmatrix
+    -matrix)
+        cmatrix
+    ;;
+
+    #45
+    #requiere
+    #Arch: sudo snap install tree
+    #Ubuntu: sudo apt install tree
+    -arbol)
+        tree $2
+    ;;
+
+    #46
+    -enano)
+        nano $2
+    ;;
+
+    
+##################################################################################################
+
+    #ALERTA, COMANDOS PELIGROSOS
+    #47
+    -eliminar)
+        rm $2
+    ;;
+
+    #48
+    -cerrar_sesion)
+        skill -kill -u $2
+    ;;
+
+    #49
+    -reiniciar_computadora)
+        reboot
+    ;;
+
+    #50
+    -apagar_computadora)
+        shutdown -h now
+    ;;
+
+##################################################################################################
+    
+    #Ayuda
+
+    #51
+    -ayuda)
+        echo
+        echo "promar (programa de martin)"
+        echo "Un programa creado por el equipo de martin para facilitar ciertas tareas, ¿si o no martín?."
+        echo
+        echo "sintaXis: promar [opcion_de_promar] [opcion_extra_1] [opcion_extra_2] ..."
+        echo
+        echo "Opciones:"
+        echo
+        echo "Miscelaneo: Comandos varios."
+        echo
+        echo "  -cambiar_a_directorio      Cambia el directorio de trabajo de shell, como el comando cd."
+        echo "  -mostrar_contenido         Muestra el contenido del directorio de trabajo de shell, como el comando ls."
+        echo "  -imprimir                  Imprime lo que mandes por consola, es el comando echo."
+        echo "  -imprimir_ubicacion        Imprime la ruta seleccionada de la terminal."
+        echo "  -manual                    Te suelta un manual de el comando que le digas."
+        echo "  -abrir_link                Abre el link que tu le digas."
+        echo "  -detener                   La terminal se duerme el tiempo que tu le digas."
+        echo "  -limpiar_terminal          Limpia todo el contenido de la terminal."
+        echo "  -salir_terminal            Cierra la terminal."
+        echo 
+        echo "Tema Archivos: Comandos que tienen que ver con los archivos."
+        echo 
+        echo "  -comprimir_a_zip           Comprime a zip lo que tu le digas."
+        echo "  -comprimir_a_rar           Comprime a rar lo que tu le digas."
+        echo "  -comprimir_a_tar           Comprime a tar lo que tu le digas."
+        echo "  -crear_carpeta             Crea una carpeta con el nombre que quieras."
+        echo "  -crear_archivo             Crea un archivo de texto vacío con el nombre que tu quieras."
+        echo "  -tipo_archivo              Dice que tipo de archivo es el que dices."
+        echo "  -tamano                    Te dice el tamaño del archivo o directorio seleccionado"
+        echo "  -buscar_archivo            Busca la ubicación del archivo que quieras."
+        echo "  -mover_archivo             Mueve el archivo a una ubicación que quieras."
+        echo "  -mostrar_contenido_archivo Muestra el texto del archivo, es como el comando cat."
+        echo "  -copiar_archivo            Copia el archivo que quieras y lo pega con el nombre que quieras."
+        echo "  -buscar_palabra            Busca la palabra que quieras en un fichero de texto."
+        echo 
+        echo "Usuarios y Grupos: Comandos para hacer las funciones basicas de usuarios y grupos."
+        echo 
+        echo "  -convertirte_en_root       Te convierte en root."
+        echo "  -cambiar_permisos          Cambia los permisos del archivo o directorio que le digas."
+        echo "  -cambiar_propietrario      Cambia de propietario del archivo o directorio que le digas."
+        echo "  -crear_usuario             Crea un usuario con atributos que le digas, es como el comando useradd."
+        echo "  -crear_grupo               Crea un grupo con ateibutos que le digas, es como el comando groupadd."
+        echo "  -modificar_usuario         Modifica los atributos que quieras del usuario que quieras, es como el comando usermod."
+        echo "  -modificar_grupo           Modifica los atributos que quieras del grupo que quieras, es como el comando groupmod."
+        echo "  -eliminar_usuario          Elimina el usuario que le digas."
+        echo "  -eliminar_grupo            Elimina el grupo que le digas."
+        echo "  -info_usuario              Muestra la información del usuario que ejecuta el comando."
+        echo "  -quien_esta_conectado      Dice que usuarios estan conectados."
+        echo
+        echo "Información Del Sistema: Comandos que muestran cierta información del sistema."
+        echo
+        echo "  -fecha_y_hora              Muestra la fecha y la hora."
+        echo "  -calendario                Muestra el calendario actual."
+        echo "  -info_cpu                  Muestra información detallada del cpu de tu computadora."
+        echo "  -kernel                    Muestra la versión del kernel."
+        echo "  -shell                     Muestra el shell del usuario."
+        echo "  -memoria_libre             Muestra la memoria libre del sistema, como el comando free."
+        echo "  -mostrar_procesos          Muestra un programa que muestra a tiempo real todos los procesos que hay, es el htop."
+        echo "  -arbol_de_procesos         Crea un arbol de los procesos que hay, con sus subprocesos y más información."
+        echo "  -matar_proceso             Mata el proceso que le digas (por PID)."
+        echo "  -ayuda_general             Mostrar una breve descripción de los comandos predeterminados del sistema."
+        echo 
+        echo "Programas: Comandos para abrir programas, ya sea de la terminal o gráficos."
+        echo 
+        echo "  -info_sistema              Muestra información basica del sistema."
+        echo "  -matrix                    Te crea el efecto Matrix en la terminal."
+        echo "  -arbol                     Te muestra en forma de arbol todo lo que day desde la ubicación que le mandes hasta la ubicación en donde está el shell."
+        echo "  -enano                     Te abre el editor de texto nano."
+        echo 
+        echo "COMANDOS PELIGROSOS: Aguas con ejecutarlos por que luego hay sustos."
+        echo 
+        echo "  -eliminar                  Elimina el archivo que le digas, como el comando rm."
+        echo "  -cerrar_sesion             Cierra la sesión con la que estas conectado."
+        echo "  -reiniciar_computadora     Reinicia la computadora enseguida."
+        echo "  -apagar_computadora        Apaga la computadora enseguida."
+        echo
+        echo "Ayuda: El comando de ayuda general del programa promar."
+        echo
+        echo "  -ayuda                     Muestra todos los comandos del programa promar y una breve descripción de ellos."
+        echo
+    ;;
+
+##################################################################################################
+
+    *)
+     echo "Orden no encontrada"
+    ;;
+
+esac
